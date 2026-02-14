@@ -235,8 +235,7 @@ class Qwen3TTSGUI:
                             "Qwen/Qwen3-TTS-12Hz-0.6B-Base",
                         ],
                         value="Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
-                        label="Select Model",
-                        info="Choose the TTS model to use"
+                        label="Select Model"
                     )
                     load_btn = gr.Button("🔄 Load Model", variant="primary")
                     model_status = gr.Textbox(label="Model Status", lines=3)
@@ -268,14 +267,12 @@ class Qwen3TTSGUI:
                             cv_language = gr.Dropdown(
                                 choices=self.languages,
                                 value="Auto",
-                                label="Language",
-                                info="Select language or Auto for automatic detection"
+                                label="Language"
                             )
                             cv_speaker = gr.Dropdown(
                                 choices=list(self.speakers.keys()),
                                 value="Vivian",
-                                label="Speaker",
-                                info="Choose a voice"
+                                label="Speaker"
                             )
                             cv_speaker_info = gr.Markdown("**Vivian**: Bright, slightly edgy young female voice (Chinese)")
                             cv_instruct = gr.Textbox(
@@ -369,9 +366,8 @@ class Qwen3TTSGUI:
                                 label="Language"
                             )
                             vc_ref_audio = gr.Audio(
-                                label="Reference Audio",
-                                type="filepath",
-                                info="Upload a 3+ second audio sample of the voice you want to clone"
+                                label="Reference Audio (Upload 3+ second sample)",
+                                type="filepath"
                             )
                             vc_ref_text = gr.Textbox(
                                 label="Reference Audio Transcript",
@@ -379,9 +375,8 @@ class Qwen3TTSGUI:
                                 lines=3
                             )
                             vc_x_vector = gr.Checkbox(
-                                label="X-Vector Only Mode",
-                                value=False,
-                                info="Use only speaker embedding (faster but lower quality)"
+                                label="X-Vector Only Mode (faster but lower quality)",
+                                value=False
                             )
                             vc_generate_btn = gr.Button("🎵 Generate Speech", variant="primary")
 
