@@ -1,0 +1,120 @@
+╔══════════════════════════════════════════════════════════════╗
+║          Qwen3-TTS GUI - Anaconda Quick Start               ║
+╚══════════════════════════════════════════════════════════════╝
+
+📋 FASTEST METHOD (Windows)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Open Anaconda Prompt (search in Start Menu)
+
+2. Double-click:  setup_anaconda.bat
+   → This will set up everything automatically!
+
+3. After setup, double-click:  run_gui_anaconda.bat
+   → Opens web GUI at http://localhost:7860
+
+   OR double-click:  run_tkinter_anaconda.bat
+   → Opens desktop application
+
+
+📋 MANUAL METHOD (Step by Step)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Open Anaconda Prompt
+
+2. Create environment:
+   conda create -n qwen3-tts python=3.10 -y
+
+3. Activate environment:
+   conda activate qwen3-tts
+
+4. Navigate to project folder:
+   cd C:\path\to\QWEN3TTSANO
+
+5. Install PyTorch (choose one):
+
+   For NVIDIA GPU (CUDA 11.8):
+   conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia -y
+
+   For NVIDIA GPU (CUDA 12.1):
+   conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia -y
+
+   For CPU only:
+   conda install pytorch torchvision torchaudio cpuonly -c pytorch -y
+
+6. Install dependencies:
+   pip install -r requirements.txt
+
+7. Run GUI:
+   python qwen3_tts_gui.py
+
+   OR for desktop app:
+   python qwen3_tts_gui_tkinter.py
+
+
+📋 EVERY TIME YOU WANT TO USE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Option 1: Double-click batch files
+   • run_gui_anaconda.bat          (Web interface)
+   • run_tkinter_anaconda.bat      (Desktop app)
+
+Option 2: From Anaconda Prompt
+   conda activate qwen3-tts
+   python qwen3_tts_gui.py
+
+
+📋 VERIFYING INSTALLATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+From Anaconda Prompt:
+   conda activate qwen3-tts
+   python -c "import torch; print('✓ PyTorch:', torch.__version__)"
+   python -c "import gradio; print('✓ Gradio installed')"
+   python -c "import qwen_tts; print('✓ qwen-tts ready')"
+
+
+📋 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Problem: "conda: command not found"
+Solution: Use Anaconda Prompt, not regular Command Prompt
+
+Problem: Environment not found
+Solution: Run setup_anaconda.bat or create manually (see step 2)
+
+Problem: Slow first run
+Solution: Normal - downloading 3-7GB model files (10-30 min)
+
+Problem: CUDA out of memory
+Solution: Use 0.6B model instead of 1.7B, or use CPU mode
+
+
+📋 DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• ANACONDA_SETUP.md    - Detailed Anaconda guide
+• README.md            - Full feature documentation
+• example_usage.py     - Code examples
+
+
+📋 MODELS AVAILABLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+In the GUI, you can load:
+   • Qwen3-TTS-12Hz-1.7B-CustomVoice    (Best quality, 9 voices)
+   • Qwen3-TTS-12Hz-0.6B-CustomVoice    (Faster, 9 voices)
+   • Qwen3-TTS-12Hz-1.7B-VoiceDesign    (Design custom voices)
+   • Qwen3-TTS-12Hz-1.7B-Base           (Voice cloning)
+   • Qwen3-TTS-12Hz-0.6B-Base           (Faster cloning)
+
+
+📋 NEXT STEPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. ✓ Setup environment
+2. ✓ Run GUI
+3. → Load model (CustomVoice recommended for first try)
+4. → Enter text and generate your first TTS!
+
+Enjoy! 🎵

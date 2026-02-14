@@ -21,7 +21,23 @@ A comprehensive graphical user interface for the Qwen3-TTS text-to-speech models
 
 ## Quick Start
 
-### Installation
+### For Windows Users with Anaconda (Easiest!)
+
+**🚀 Automated Setup:**
+1. Open Anaconda Prompt
+2. Navigate to project folder: `cd C:\path\to\QWEN3TTSANO`
+3. Run: `setup_anaconda.bat`
+4. Follow the prompts
+5. Run the GUI: `run_gui_anaconda.bat`
+
+**📖 See `ANACONDA_SETUP.md` for detailed Anaconda instructions**
+**📋 See `QUICKSTART_ANACONDA.txt` for quick reference**
+
+---
+
+### For Linux/Mac or Standard Python
+
+#### Installation
 
 1. Clone this repository:
 ```bash
@@ -39,14 +55,14 @@ pip install -r requirements.txt
 pip install flash-attn --no-build-isolation
 ```
 
-### Usage
+#### Usage
 
-#### Method 1: Direct Python
+**Method 1: Direct Python**
 ```bash
 python qwen3_tts_gui.py
 ```
 
-#### Method 2: Using the launcher
+**Method 2: Using the launcher**
 ```bash
 chmod +x run_gui.sh
 ./run_gui.sh
