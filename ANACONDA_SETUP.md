@@ -63,12 +63,16 @@ pip install -r requirements.txt
 
 ### 6. (Optional) Install FlashAttention for Better Performance
 
-**Only if you have NVIDIA GPU:**
+**Only if you have NVIDIA GPU and want maximum performance:**
 ```bash
 pip install flash-attn --no-build-isolation
 ```
 
-> **Note**: This may take 5-10 minutes to compile. If it fails, you can skip it - the GUI will work without it.
+> **Note**:
+> - This is **completely optional** - the GUI works perfectly without it!
+> - FlashAttention improves speed by ~20-30% but requires compilation (5-10 minutes)
+> - If installation fails, just skip it - the GUI will automatically use PyTorch's native SDPA attention instead
+> - **Windows users**: FlashAttention installation can be complex on Windows, it's usually easier to skip it
 
 ## Running the GUI
 

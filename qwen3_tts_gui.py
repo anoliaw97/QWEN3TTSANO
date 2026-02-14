@@ -24,6 +24,15 @@ class Qwen3TTSGUI:
         self.model_type = None
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
 
+        # Check if flash-attention is available
+        self.has_flash_attn = False
+        try:
+            import flash_attn
+            self.has_flash_attn = True
+        except ImportError:
+            print("ℹ️ flash-attn not installed. Using standard attention (slower but works fine).")
+            self.has_flash_attn = False
+
         # Supported speakers for CustomVoice model
         self.speakers = {
             "Vivian": "Bright, slightly edgy young female voice (Chinese)",
@@ -63,12 +72,24 @@ class Qwen3TTSGUI:
 
             progress(0.3, desc=f"Loading {model_name}...")
 
+            # Determine attention implementation
+            # Use FlashAttention2 only if available and on CUDA
+            if torch.cuda.is_available() and self.has_flash_attn:
+                attn_impl = "flash_attention_2"
+                print("✓ Using FlashAttention2 for better performance")
+            elif torch.cuda.is_available():
+                attn_impl = "sdpa"  # Scaled Dot Product Attention (PyTorch native, fast)
+                print("✓ Using SDPA (PyTorch native attention)")
+            else:
+                attn_impl = "eager"  # Standard attention for CPU
+                print("✓ Using eager attention (CPU mode)")
+
             # Load model with appropriate settings
             self.model = Qwen3TTSModel.from_pretrained(
                 model_name,
                 device_map=self.device,
                 dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
-                attn_implementation="flash_attention_2" if torch.cuda.is_available() else "eager",
+                attn_implementation=attn_impl,
             )
 
             progress(1.0, desc="Model loaded!")
