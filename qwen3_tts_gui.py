@@ -113,6 +113,18 @@ class Qwen3TTSGUI:
             if self.model is None:
                 return None, "❌ Please load a model first"
 
+            # Check if correct model type is loaded
+            if self.model_type != "custom_voice":
+                return None, (
+                    "❌ Wrong model loaded!\n\n"
+                    "Custom Voice requires a **CustomVoice** model.\n"
+                    "Current model type: " + self.model_type + "\n\n"
+                    "Please load one of these models:\n"
+                    "• Qwen3-TTS-12Hz-1.7B-CustomVoice (recommended)\n"
+                    "• Qwen3-TTS-12Hz-0.6B-CustomVoice (faster)\n\n"
+                    "Then try again!"
+                )
+
             if not text.strip():
                 return None, "❌ Please enter text to synthesize"
 
@@ -151,6 +163,17 @@ class Qwen3TTSGUI:
         try:
             if self.model is None:
                 return None, "❌ Please load a model first"
+
+            # Check if correct model type is loaded
+            if self.model_type != "voice_design":
+                return None, (
+                    "❌ Wrong model loaded!\n\n"
+                    "Voice Design requires the **VoiceDesign** model.\n"
+                    "Current model type: " + self.model_type + "\n\n"
+                    "Please load:\n"
+                    "• Qwen3-TTS-12Hz-1.7B-VoiceDesign\n\n"
+                    "Then try again!"
+                )
 
             if not text.strip():
                 return None, "❌ Please enter text to synthesize"
@@ -194,6 +217,18 @@ class Qwen3TTSGUI:
         try:
             if self.model is None:
                 return None, "❌ Please load a model first"
+
+            # Check if correct model type is loaded
+            if self.model_type != "voice_clone":
+                return None, (
+                    "❌ Wrong model loaded!\n\n"
+                    "Voice Clone requires a **Base** model.\n"
+                    "Current model type: " + self.model_type + "\n\n"
+                    "Please load one of these models:\n"
+                    "• Qwen3-TTS-12Hz-1.7B-Base (better quality)\n"
+                    "• Qwen3-TTS-12Hz-0.6B-Base (faster)\n\n"
+                    "Then try again!"
+                )
 
             if not text.strip():
                 return None, "❌ Please enter text to synthesize"
@@ -239,14 +274,27 @@ class Qwen3TTSGUI:
             A comprehensive interface for Qwen3-TTS text-to-speech models.
 
             **Features:**
-            - 🎯 **Custom Voice**: Use predefined high-quality voices
-            - 🎨 **Voice Design**: Create voices from text descriptions
-            - 🔊 **Voice Clone**: Clone voices from audio samples
+            - 🎯 **Custom Voice**: Use predefined high-quality voices (9 speakers)
+            - 🎨 **Voice Design**: Create custom voices from text descriptions
+            - 🔊 **Voice Clone**: Clone any voice from audio samples
+
+            ---
+
+            ### 📌 Which Model to Use?
+
+            | Feature | Required Model | Purpose |
+            |---------|---------------|---------|
+            | **Custom Voice** | `*-CustomVoice` | Use 9 pre-made voices (Ryan, Vivian, etc.) |
+            | **Voice Design** | `*-VoiceDesign` | Design custom voices with descriptions |
+            | **Voice Clone** | `*-Base` | Clone voices from your audio files |
+
+            ⚠️ **Important**: Each tab requires its specific model type to work!
             """)
 
             # Model Loading Section
             with gr.Row():
                 with gr.Column():
+                    gr.Markdown("### 📥 Load Model")
                     model_selector = gr.Dropdown(
                         choices=[
                             "Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
@@ -258,6 +306,12 @@ class Qwen3TTSGUI:
                         value="Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice",
                         label="Select Model"
                     )
+                    gr.Markdown("""
+                    **Model Guide:**
+                    - `*-CustomVoice` → Use **Custom Voice** tab
+                    - `*-VoiceDesign` → Use **Voice Design** tab
+                    - `*-Base` → Use **Voice Clone** tab
+                    """)
                     load_btn = gr.Button("🔄 Load Model", variant="primary")
                     model_status = gr.Textbox(label="Model Status", lines=3)
 
