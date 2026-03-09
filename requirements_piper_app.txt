@@ -1,0 +1,21 @@
+# Requirements for Piper TTS Application
+# Use this to create standalone TTS apps with custom voices
+
+# Core TTS engine
+piper-tts>=1.2.0
+
+# Audio processing
+soundfile>=0.12.0
+sounddevice>=0.4.6
+
+# Optional: For Gradio UI version
+gradio>=4.20.0
+
+# Optional: For training custom voices
+# torch>=2.0.0
+# torchaudio>=2.0.0
+# onnx>=1.14.0
+# onnxruntime>=1.15.0
+
+# Optional: For packaging as executable
+# pyinstaller>=5.13.0
