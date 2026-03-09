@@ -1,0 +1,26 @@
+# Piper TTS Application Requirements
+# Use this for building installable TTS apps
+
+# Core TTS
+piper-tts>=1.2.0
+
+# Audio processing
+soundfile>=0.12.0
+wave
+
+# GUI options (choose one or both)
+# For simple desktop app:
+# (tkinter is built-in, no need to install)
+
+# For modern web-based UI:
+gradio>=4.20.0
+
+# For packaging as executable
+pyinstaller>=5.0
+
+# Optional: Voice encryption
+cryptography>=41.0.0
+
+# Optional: Advanced audio processing
+pydub>=0.25.0
+scipy>=1.10.0
